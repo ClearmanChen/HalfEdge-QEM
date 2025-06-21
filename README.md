@@ -19,18 +19,22 @@ During half-edge initialization:
 - Compute per-face matrix:  
   $$K_p = \mathbf{p}\mathbf{p}^T$$
   where:
+
   $$
   \mathbf{p} = \begin{pmatrix} \vec{n} \\ -(\vec{n} \cdot \vec{v}) \end{pmatrix}
   $$
+
   *($\vec{n}$: face normal, $\vec{v}$: any vertex on the face)*
 - Vertex error matrix $Q$ aggregates $K_p$ from all adjacent faces
 - $K_p$ remains constant during optimization
 
 ### Collapse Cost Calculation
 For edge $(v_1, v_2)$:
+
 $$
 \text{Cost} = \mathbf{p^*}^T(Q_1 + Q_2)\mathbf{p^*}
 $$
+
 where $\mathbf{p^*}$ is solved via:
 1. Linear system $Q'\mathbf{p^*} = 0$ (when $\det(Q') > \epsilon$)
 2. Test endpoints/midpoint when $Q'$ is near-singular  
@@ -59,7 +63,7 @@ Edge collapse is permitted **only** when:
 
 ## Visualization
 **GLFW/ImGUI Interface** enables:  
-- 🖱️ 3D model rotation/panning/zooming  
+- 🖱️ 3D model rotation
 - 🎚️ Simplification ratio slider (0.0 to 1.0)  
 - ▶️ "Run" button for dynamic simplification  
 - 📊 Real-time error metrics display  
